@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AddGameManager : GameManager 
+public class MixGameManager : GameManager
 {
-    private GameObject ingredients;
-    private int count = 0;    
+    private GameObject unmixedDough;
+    private GameObject mixedDough;
+
+    private int spinDistanceToWin;
+    private int currSpinDistance;
+
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        ingredients = transform.GetChild(0).gameObject;
-        
+        unmixedDough = transform.GetChild(1).GetChild(0).gameObject;
+        mixedDough = transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -28,22 +32,9 @@ public class AddGameManager : GameManager
             }
         } else if (gameActive)
         {
-            if (count == 4)
-            {
-                gameActive = false;
-                gameWin = true;
-                reactivateScroll();
-            }
+
         }
     }
-
-    public void appear(GameObject ingredient)
-    {
-        ingredient.SetActive(true);
-        count++;
-    }
-
-   
 
     
 }
